@@ -42,6 +42,3 @@ out/
 ### Yaml ###
 *.yml
 *.yaml
-
-### Docker ###
-Dockerfile
