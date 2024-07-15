@@ -23,7 +23,8 @@ jobs:
         run: |
           ls .
           ls ./src
-          ls ./src/resources
+          ls ./src/main
+          ls ./src/main/resources
 
       - name: Create app.yml
         run: |
