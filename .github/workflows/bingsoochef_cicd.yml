@@ -43,13 +43,14 @@ jobs:
       - name: Publish to docker hub
         run: docker push wgwjh05169/bingsoochef
 
-      - name: Connect to WAS & Execute Application
+      - name: Execute Application
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
+          timeout-seconds: 100
           script: |
             docker stop $(docker ps -a -q) 
             docker rm $(docker ps -a -q) 
