@@ -19,6 +19,11 @@ jobs:
           java-version: '17'
           distribution: 'zulu'
 
+      - name: Create app.yml
+        run: touch ./src/main/resources/application.properties
+      - run: echo "${{ secrets.APPLICATION }}" > ./src/main/resources/application.properties
+      - run: cat ./src/main/resources/application.properties
+
       - name: Grant permission to gradlew
         run: chmod +x ./gradlew
 
