@@ -20,7 +20,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Check path
-        run: ls .
+        run: |
+          ls .
+          ls ./src
 
       - name: Create app.yml
         run: |
