@@ -19,18 +19,11 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Check path
-        run: |
-          ls .
-          ls ./src
-          ls ./src/main
-          ls ./src/main/resources
-
       - name: Create app.yml
         run: |
-          cd ./src/main/resources
-          touch ./application.yml
-          echo "${{ secrets.ENV }}" >> ./application.yml
+          mkdir -p ./src/main/resources
+          touch ./src/main/resources/application.yml
+          echo "${{ secrets.APPLICATION }}" >> ./src/main/resources/application.yml
 
       - name: Grant permission to gradlew
         run: chmod +x ./gradlew
