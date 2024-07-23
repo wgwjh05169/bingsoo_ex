@@ -7,9 +7,9 @@ on:
       - main
 
 jobs:
-  backend-deploy:
+  build:
     runs-on: ubuntu-latest
-    steps:
+    steps: 
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -31,6 +31,10 @@ jobs:
       - name: Build with gradle
         run: ./gradlew clean build
 
+
+  docker-image:
+    runs-on: ubuntu-latest
+    steps:
       - name: Build docker image
         run: docker build --build-arg DEPENDENCY=build/dependency -t wgwjh05169/bingsoochef .
 
@@ -42,7 +46,10 @@ jobs:
 
       - name: Publish to docker hub
         run: docker push wgwjh05169/bingsoochef
-
+        
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
       - name: Execute Application
         uses: appleboy/ssh-action@v0.1.6
         with:
