@@ -31,11 +31,6 @@ jobs:
       - name: Build with gradle
         run: ./gradlew clean build
 
-
-  docker-image:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: Build docker image
         run: docker build --build-arg DEPENDENCY=build/dependency -t wgwjh05169/bingsoochef .
 
@@ -49,7 +44,7 @@ jobs:
         run: docker push wgwjh05169/bingsoochef
         
   deploy:
-    needs: [build, docker-image]
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Execute Application
