@@ -33,6 +33,7 @@ jobs:
 
 
   docker-image:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Build docker image
@@ -48,6 +49,7 @@ jobs:
         run: docker push wgwjh05169/bingsoochef
         
   deploy:
+    needs: [build, docker-image]
     runs-on: ubuntu-latest
     steps:
       - name: Execute Application
